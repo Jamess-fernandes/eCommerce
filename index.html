@@ -3,18 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Premium eCommerce</title>
+    <title>Premium eCommerce</title>
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <style>
         html {
             scroll-behavior: smooth;
         }
+        
+        /* Cart and Product Styles */
+        #cart-sidebar {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        #cart-overlay {
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        body.overflow-hidden {
+            overflow: hidden;
+        }
+        
+        .product-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
         .product-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
+        
         .product-image {
             height: 200px;
             object-fit: cover;
@@ -78,7 +100,7 @@
             <div class="px-2 pt-2 pb-3 space-y-1">
                 <a href="#home" class="block px-3 py-2 text-gray-700 hover:text-primary">Home</a>
                 <a href="#products" class="block px-3 py-2 text-gray-700 hover:text-primary">Products</a>
-                 <a href="#about" class="block px-3 py-2 text-gray-700 hover:text-primary">About</a>
+                <a href="#about" class="block px-3 py-2 text-gray-700 hover:text-primary">About</a>
                 <a href="#contact" class="block px-3 py-2 text-gray-700 hover:text-primary">Contact</a>
             </div>
         </div>
@@ -105,8 +127,6 @@
         </div>
     </section>
 
-   
-
     <!-- About Section -->
     <section id="about" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -125,27 +145,27 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-bold text-center mb-12">Contact Us</h2>
             <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
-                <form>
+                <form id="contact-form">
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
                             Name
                         </label>
                         <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" 
-                               id="name" type="text" placeholder="Your name">
+                               id="name" type="text" placeholder="Your name" required>
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
                             Email
                         </label>
                         <input class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" 
-                               id="email" type="email" placeholder="your@email.com">
+                               id="email" type="email" placeholder="your@email.com" required>
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="message">
                             Message
                         </label>
                         <textarea class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" 
-                                  id="message" rows="4" placeholder="Your message"></textarea>
+                                  id="message" rows="4" placeholder="Your message" required></textarea>
                     </div>
                     <button type="submit" class="w-full bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded-md transition-colors">
                         Send Message
@@ -160,17 +180,16 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold mb-4">James Fernandes</h3>
-                    <p class="text-gray-400">Premium eCommerce for quality products and exceptional service.</p>
+                    <h3 class="text-xl font-bold mb-4">Premium eCommerce</h3>
+                    <p class="text-gray-400">Your one-stop shop for quality products and exceptional service.</p>
                 </div>
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
                     <ul class="space-y-2">
-                        <li><a href="#home" class="text-gray-400 hover:text-white">Home</a></li>
-                        <li><a href="#products" class="text-gray-400 hover:text-white">Products</a></li>
-
-                        <li><a href="#about" class="text-gray-400 hover:text-white">About</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#products" class="text-gray-400 hover:text-white transition-colors">Products</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
                     </ul>
                 </div>
                 <div>
@@ -193,20 +212,63 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Newsletter</h4>
                     <p class="text-gray-400 mb-4">Subscribe to our newsletter for updates.</p>
-                    <div class="flex">
-                        <input type="email" placeholder="Your email" class="px-4 py-2 w-full rounded-l-md focus:outline-none text-gray-900">
-                        <button class="bg-primary hover:bg-secondary px-4 rounded-r-md">
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" 
+                               class="px-4 py-2 w-full rounded-l-md focus:outline-none text-gray-900">
+                        <button type="submit" class="bg-primary hover:bg-secondary px-4 rounded-r-md transition-colors">
                             <i class="fas fa-paper-plane"></i>
                         </button>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 James Fernandes. All rights reserved.</p>
+                <p>&copy; 2023 Premium eCommerce. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed inset-y-0 right-0 w-full md:w-1/3 lg:w-1/4 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out z-50 overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Your Cart</h2>
+                <button id="close-cart" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div id="cart-items" class="space-y-4">
+                <!-- Cart items will be dynamically inserted here -->
+                <div class="text-center py-8 text-gray-500">
+                    <i class="fas fa-shopping-cart text-4xl mb-2"></i>
+                    <p>Your cart is empty</p>
+                </div>
+            </div>
+            
+            <div id="cart-summary" class="border-t border-gray-200 mt-6 pt-6 hidden">
+                <div class="flex justify-between mb-2">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal">$0.00</span>
+                </div>
+                <div class="flex justify-between mb-4">
+                    <span>Shipping</span>
+                    <span>Free</span>
+                </div>
+                <div class="flex justify-between font-bold text-lg">
+                    <span>Total</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+                <button id="checkout-btn" class="w-full bg-primary hover:bg-secondary text-white py-3 rounded-lg mt-6 transition-colors">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Overlay -->
+    <div id="cart-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+
+    <!-- Scripts -->
     <script src="script.js"></script>
     <script src="mobile-menu.js"></script>
     <script>
@@ -222,7 +284,29 @@
                 }
             }
         };
+
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Handle contact form submission
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // Add your form submission logic here
+                    alert('Thank you for your message! We will get back to you soon.');
+                    contactForm.reset();
+                });
+            }
+        });
     </script>
-    
 </body>
 </html>
