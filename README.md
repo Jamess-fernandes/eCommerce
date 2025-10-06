@@ -54,10 +54,3 @@ A modern, responsive e-commerce website built with HTML, CSS (Tailwind), and van
 - Vanilla JavaScript
 - Font Awesome Icons
 
-## License
-
-This project is open source and available under the [MIT License](LICENSE).
-=======
-# eCommerce
-Ecommerce Website
->>>>>>> f1034895a67bc217c92873f72cbc7d7006263633
