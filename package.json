@@ -1,0 +1,26 @@
+{
+  "name": "premium-ecommerce",
+  "version": "1.0.0",
+  "description": "A premium e-commerce website with modern UI/UX",
+  "main": "script.js",
+  "scripts": {
+    "start": "http-server -p 3000",
+    "build": "echo 'Build script would run here in a real project'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecommerce",
+    "shopping",
+    "online-store"
+  ],
+  "author": "James Fernandes",
+  "license": "MIT",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.14"
+  }
+}
